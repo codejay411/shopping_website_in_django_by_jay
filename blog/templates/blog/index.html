@@ -1,0 +1,43 @@
+{% extends 'blog/basic.html' %}
+{% block title%}Blog{% endblock %}
+
+{% block css %}
+.bd-placeholder-img{
+   {% comment %} margin-top: 38px; {% endcomment %}
+   {% comment %} margin-right: 10px; {% endcomment %}
+}
+{% endblock css %}
+
+{% block body %}
+<div class="container">
+
+    <div class="row my-2">
+  {% for item in myposts %}
+
+        <div class="col-md-6">
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">kya likhe yaar</strong>
+                    <h3 class="mb-0">{{item.title|slice:"0:15"}}...</h3>
+                    <div class="mb-1 text-muted">Nov 12</div>
+                    <p class="card-text mb-auto">{{item.head0}}</p>
+                    <a href="blogpost/{{item.post_id}}" class="stretched-link">Continue reading</a>
+                </div>
+                <div class="imgthumbnail col-auto d-none d-lg-block">
+                    <img src="/media/{{item.thumbnail}}" class="bd-placeholder-img" width="220" height="190" 
+                      aria-label="Placeholder: Thumbnail">
+                    </img>
+                </div>
+            </div>
+        </div>
+    {% if forloop.counter|divisibleby:2 %}
+    </div><div class="row my-2">
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% endblock %}
+
+
+
+   
